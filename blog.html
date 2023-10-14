@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <!-- Tailwind and Daisy UI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <main class="flex mt-40 mb-16 items-center">
+        <section class="container mx-auto">
+            <h1 class="text-4xl text-center font-semibold mb-8">IMPORTANT <span
+                    class="text-secondary">QUESTIONS!!!</span></h1>
+            <div class="collapse collapse-arrow bg-lime-100">
+                <input type="radio" name="my-accordion-2" checked="checked" />
+                <div class="collapse-title text-xl font-medium">
+                    Discuss the scope of var, let, and const?
+                </div>
+                <div class="collapse-content">
+                    <p>var: It is not a block scope and is hoisted. They can be used before they are declared, but
+                        initially it will be set as undefined.</p>
+                    <p>let: It is not hoisted and has a block scope. You are unable to use them before declaring them
+                        because they are only available within the block.</p>
+                    <p>const: Has no hoisting and has a block scope.Furthermore, once a value is set for a const
+                        variable, it cannot be changed because they are constant.</p>
+                </div>
+            </div>
+            <div class="collapse collapse-arrow bg-amber-200">
+                <input type="radio" name="my-accordion-2" />
+                <div class="collapse-title text-xl font-medium">
+                    Tell us the use cases of null and undefined?
+                </div>
+                <div class="collapse-content">
+                    <p>null: This is usually used as a placeholder for an object that is not initialized or does not
+                        exist, or to purposefully indicate the lack of any object value.</p>
+                    <p>Undefined: Indicates that a variable or property does not have a defined value. When a variable
+                        or property in JavaScript is declared but not given a value, it frequently has a default
+                        value. It might also mean that a function isn't returning any values.</p>
+                    <p>One important use case can be: When a value is expected but not supplied, or when you need to
+                        verify whether a variable or property has been initialized, use undefined; otherwise, use
+                        null to expressly declare that a variable or object property has no value.</p>
+                </div>
+            </div>
+            <div class="collapse collapse-arrow bg-rose-200">
+                <input type="radio" name="my-accordion-2" />
+                <div class="collapse-title text-xl font-medium">
+                    What do you mean by REST API?
+                </div>
+                <div class="collapse-content">
+                    <p>An API that complies with the representational state transfer, or REST, architectural style's
+                        design principles is known as a REST API. <br>In real life, a REST API functions in the same
+                        manner as any website. Data is returned over the HTTP protocol once a call is placed from a
+                        client to a server.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="text-center">
+        <a class="btn btn-secondary font-bold" href="index.html">RETURN</a>
+    </div>
+</body>
+
+</html>

@@ -44,10 +44,10 @@ const displayVideos = (video) => {
         const inHours = inSecondsToNumber / 3600;
         const inMinutes = (inSecondsToNumber % 3600) / 60;
         const inSecond = inSeconds % 60;
-      
-        const totalHours= `${inHours.toFixed(0)}hrs ${inMinutes.toFixed(0)} min ${inSecond}s ago`
+
+        const totalHours = `${inHours.toFixed(0)}hrs ${inMinutes.toFixed(0)} min ${inSecond}s ago`
         console.log(totalHours);
-    
+
         const videoDiv = document.createElement('div');
         videoDiv.innerHTML = `
         <div class="card w-full bg-base-100 shadow-xl relative">
@@ -77,3 +77,5 @@ const displayVideos = (video) => {
 }
 
 loadCategory();
+// initially loading All
+loadPlaylist('1000');
