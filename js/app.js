@@ -34,15 +34,26 @@ const loadPlaylist = async (categoryID) => {
 const displayVideos = (video) => {
     console.log(video);
     const videoContainer = document.getElementById('video-container');
+    // Clearing previously clicked items
+    videoContainer.textContent = '';
     video.forEach((videos) => {
         console.log(videos)
-        // console.log(videos.authors[0].profile_picture);
+        // trying seconds to hours
+        const inSeconds = videos.others.posted_date;
+        const inSecondsToNumber = +inSeconds;
+        const inHours = inSecondsToNumber / 3600;
+        const inMinutes = (inSecondsToNumber % 3600) / 60;
+        const inSecond = inSeconds % 60;
+      
+        const totalHours= `${inHours.toFixed(0)}hrs ${inMinutes.toFixed(0)} min ${inSecond}s ago`
+        console.log(totalHours);
+    
         const videoDiv = document.createElement('div');
         videoDiv.innerHTML = `
         <div class="card w-full bg-base-100 shadow-xl relative">
-                <figure><img class="w-full h-[200px]" src="${videos.thumbnail}" alt="Shoes" />
+                <figure><img class="w-full h-[200px]" src="${videos.thumbnail}" />
                 </figure>
-                <h4 class="absolute right-0 top-44">something</h4>
+                <h4 class="absolute right-2 top-40 bg-slate-800 p-1 rounded-lg text-white">${videos.others.posted_date ? totalHours : ''}</h4>
                 <div class="p-5">
                     <div class="flex">
                         <div class="mr-2">
@@ -52,10 +63,10 @@ const displayVideos = (video) => {
                             <h2 class="card-title">${videos?.title}</h2>
                             <p></p>
                             <div class="flex">
-                                <span class="mr-4">${videos?.authors[0]?.profile_name}</span>
-                                <span>${videos?.authors[0]?.verified ? 'verified' : 'not verified'}</span>
+                                <span class="mr-3">${videos?.authors[0]?.profile_name}</span>
+                                <span>${videos?.authors[0]?.verified ? '<i class="fa-solid fa-check bg-blue-700 rounded-full text-white"></i>' : ''}</span>
                             </div>
-                            <p><span class="mr-4">91k</span><span>views</span></p>
+                            <p><span class="mr-2">${videos.others.views}</span><span>views</span></p>
                         </div>
                     </div>
                 </div>
