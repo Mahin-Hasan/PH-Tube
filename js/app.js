@@ -21,7 +21,7 @@ const displayCategories = (categories) => {
 
 // Function to get Category Id Dynamically
 const loadPlaylist = async (categoryID) => {
-    // console.log(categoryID);
+    console.log(categoryID);
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryID}`)
     const data = await res.json()
     // console.log(data.data);
@@ -32,48 +32,64 @@ const loadPlaylist = async (categoryID) => {
 
 // display categories funciton
 const displayVideos = (video) => {
-    console.log(video);
+    console.log(video.length);
     const videoContainer = document.getElementById('video-container');
-    // Clearing previously clicked items
-    videoContainer.textContent = '';
-    video.forEach((videos) => {
-        console.log(videos)
-        // trying seconds to hours
-        const inSeconds = videos.others.posted_date;
-        const inSecondsToNumber = +inSeconds;
-        const inHours = inSecondsToNumber / 3600;
-        const inMinutes = (inSecondsToNumber % 3600) / 60;
-        const inSecond = inSeconds % 60;
+    const oppsContainer = document.getElementById('no-content');
+    if (video.length === 0) {
+        console.log('nothing')
+        videoContainer.textContent = '';
+        const oppsDiv = document.createElement('div');
+        oppsDiv.innerHTML = `
+        <div class="flex flex-col items-center text-center justify-center mt-28">
+            <img src="images/Icon.png">
+            <h1 class="text-3xl font-semibold mt-4">Oops!! Sorry, There is no <br> content here</h1>
+        </div>
+        `;
+        oppsContainer.appendChild(oppsDiv);
 
-        const totalHours = `${inHours.toFixed(0)}hrs ${inMinutes.toFixed(0)} min ${inSecond}s ago`
-        console.log(totalHours);
+    }
+    else {
 
-        const videoDiv = document.createElement('div');
-        videoDiv.innerHTML = `
-        <div class="card w-full bg-base-100 shadow-xl relative">
-                <figure><img class="w-full h-[200px]" src="${videos.thumbnail}" />
-                </figure>
-                <h4 class="absolute right-2 top-40 bg-slate-800 p-1 rounded-lg text-white">${videos.others.posted_date ? totalHours : ''}</h4>
-                <div class="p-5">
-                    <div class="flex">
-                        <div class="mr-2">
-                            <img class="w-14 h-14 rounded-full" src="${videos?.authors[0]?.profile_picture}" alt="">
-                        </div>
-                        <div>
-                            <h2 class="card-title">${videos?.title}</h2>
-                            <p></p>
-                            <div class="flex">
-                                <span class="mr-3">${videos?.authors[0]?.profile_name}</span>
-                                <span>${videos?.authors[0]?.verified ? '<i class="fa-solid fa-check bg-blue-700 rounded-full text-white"></i>' : ''}</span>
+        // Clearing previously clicked items
+        oppsContainer.textContent = '';
+        videoContainer.textContent = '';
+        video.forEach((videos) => {
+            // trying seconds to hours
+            const inSeconds = videos.others.posted_date;
+            const inSecondsToNumber = +inSeconds;
+            const inHours = inSecondsToNumber / 3600;
+            const inMinutes = (inSecondsToNumber % 3600) / 60;
+            const inSecond = inSeconds % 60;
+
+            const totalHours = `${inHours.toFixed(0)}hrs ${inMinutes.toFixed(0)} min ${inSecond}s ago`
+            const videoDiv = document.createElement('div');
+            videoDiv.innerHTML = `
+            <div class="card w-full bg-base-100 shadow-xl relative">
+                    <figure><img class="w-full h-[200px]" src="${videos.thumbnail}" />
+                    </figure>
+                    <h4 class="absolute right-2 top-40 bg-slate-800 p-1 rounded-lg text-white">${videos.others.posted_date ? totalHours : ''}</h4>
+                    <div class="p-5">
+                        <div class="flex">
+                            <div class="mr-2">
+                                <img class="w-14 h-14 rounded-full" src="${videos?.authors[0]?.profile_picture}" alt="">
                             </div>
-                            <p><span class="mr-2">${videos.others.views}</span><span>views</span></p>
+                            <div>
+                                <h2 class="card-title">${videos?.title}</h2>
+                                <p></p>
+                                <div class="flex">
+                                    <span class="mr-3">${videos?.authors[0]?.profile_name}</span>
+                                    <span>${videos?.authors[0]?.verified ? '<i class="fa-solid fa-check bg-blue-700 rounded-full text-white"></i>' : ''}</span>
+                                </div>
+                                <p><span class="mr-2">${videos.others.views}</span><span>views</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        `;
-        videoContainer.appendChild(videoDiv);
-    })
+            `;
+            videoContainer.appendChild(videoDiv);
+        })
+    }
+
 }
 
 loadCategory();
