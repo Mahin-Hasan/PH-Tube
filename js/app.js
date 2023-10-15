@@ -22,7 +22,6 @@ const loadPlaylist = async (categoryID) => {
     const data = await res.json()
     const allVideo = data.data;
     displayVideos(allVideo);
-
 }
 
 // display categories function
