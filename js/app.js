@@ -99,9 +99,9 @@ sortButton.addEventListener('click', () => {
     const items = Array.from(itemsContainer.querySelectorAll('.item'));
 
     items.sort((a, b) => {
-        const priceA = parseInt(a.getAttribute('item-view'));
-        const priceB = parseInt(b.getAttribute('item-view'));
-        return priceB - priceA;
+        const itemA = parseInt(a.getAttribute('item-view'));
+        const itemB = parseInt(b.getAttribute('item-view'));
+        return itemB - itemA;
     });
 
     itemsContainer.innerHTML = '';
